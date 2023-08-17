@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom";
 
 export interface ProductResponse {
   id: number;
+  price: number;
   name: string;
   description: string;
+  imageUrl: string;
 }
 
 const Home = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Array<ProductResponse>>([]);
   const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(loading);
     const getData = async () => {
       await axios
         .get<ProductResponse[]>(
@@ -30,13 +34,35 @@ const Home = () => {
           const error = ex.response.status === 404 ? "error " : " no error";
           setError(error);
         });
+      setLoading(false);
     };
     getData();
   }, []);
 
   console.log(products, "allData");
 
-  return <div>home page</div>;
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
+    <div>
+      {products?.map((data, i) => (
+        <div
+          onClick={() => navigate(`details/${data.id}`)}
+          key={i}
+          style={{ marginBottom: "50px", cursor: "pointer" }}
+        >
+          <div>{data?.name}</div>
+          <img
+            src={data?.imageUrl}
+            alt={data?.name}
+            style={{ width: "250px" }}
+          />
+          <div>{data?.description}</div>
+          <div>{data?.price}</div>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Home;
