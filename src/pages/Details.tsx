@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { ShopContext, ShopLayer } from "../stores/context";
 
 export interface SingleProductResponse {
   id: number;
@@ -11,10 +12,10 @@ export interface SingleProductResponse {
 }
 
 const Details = () => {
+  const { setError } = useContext(ShopContext);
   const { id } = useParams();
   const [singleProduct, setSingleProduct] =
     useState<SingleProductResponse | null>();
-  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const getData = async () => {
@@ -39,8 +40,6 @@ const Details = () => {
     };
     getData();
   }, [id]);
-
-  console.log(singleProduct);
 
   return (
     <div>

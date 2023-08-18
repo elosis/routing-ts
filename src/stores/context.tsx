@@ -16,6 +16,7 @@ interface ContextValue {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   error: string;
   setError: React.Dispatch<React.SetStateAction<string>>;
+  loadingProducts: () => void;
 }
 
 const ShopContext = createContext<ContextValue>({
@@ -25,6 +26,7 @@ const ShopContext = createContext<ContextValue>({
   setLoading: () => {},
   error: "",
   setError: () => {},
+  loadingProducts: () => {},
 });
 
 function ShopLayer(props: React.PropsWithChildren<{}>) {
@@ -32,7 +34,7 @@ function ShopLayer(props: React.PropsWithChildren<{}>) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
-  useEffect(() => {
+  const loadingProducts = useEffect(() => {
     setLoading(true);
     const getData = async () => {
       await axios
@@ -56,6 +58,7 @@ function ShopLayer(props: React.PropsWithChildren<{}>) {
         });
     };
     getData();
+    setLoading(false);
   }, []);
 
   const data: ContextValue = {
@@ -65,6 +68,7 @@ function ShopLayer(props: React.PropsWithChildren<{}>) {
     setLoading,
     error,
     setError,
+    loadingProducts: () => {},
   };
 
   return (
