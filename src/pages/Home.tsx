@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ShopContext, ShopLayer } from "../stores/context";
+import Footer from "../components/Footer";
+import Title from "../components/Title";
 import "../App.css";
 
 export interface ProductResponse {
@@ -24,10 +26,7 @@ const Home = () => {
   ) : (
     <div className="container">
       <div className="main">
-        <div className="title">
-          <h1>Ticketless</h1>
-          <h2 className="subtitle">Gigs you don't want to miss!</h2>
-        </div>
+        <Title />
         <div className="gigs-container">
           {products?.map((data, i) => (
             <div
@@ -53,30 +52,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <footer className="footer">
-        <p>
-          <strong>Ticketless</strong>by{" "}
-          <a href="https://serverlesslab.com">Serverlesslab</a>. A sample
-          application for learning Serverless on AWS.
-        </p>
-        <p>
-          The <a href="https://github.com/lucpod/ticketless">source code</a> is
-          licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
-          website content is licensed{" "}
-          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-            CC BY NC SA 4.0
-          </a>
-          .
-        </p>
-        <p>
-          <a href="http://bulma.io" target="_blank">
-            <small>
-              Made with <strong>bulma</strong>
-            </small>
-          </a>
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };
