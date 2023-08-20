@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ShopContext, ShopLayer } from "../stores/context";
+import Title from "../components/Title";
+import Footer from "../components/Footer";
 
 export interface SingleProductResponse {
   id: number;
@@ -42,15 +44,27 @@ const Details = () => {
   }, [id]);
 
   return (
-    <div>
-      <div>{singleProduct?.name}</div>
-      <img
-        src={singleProduct?.imageUrl}
-        alt={singleProduct?.name}
-        style={{ width: "250px" }}
-      />
-      <div>{singleProduct?.description}</div>
-      <div>{singleProduct?.price}</div>
+    <div className="detail-container">
+      <Title />
+      <div className="product-card">
+        <img
+          src={singleProduct?.imageUrl}
+          alt={singleProduct?.name}
+          style={{ width: "250px" }}
+        />
+        <table>
+          <tr>
+            <th className="panel-border">{singleProduct?.name}</th>
+          </tr>
+          <tr>
+            <td className="panel-border">{singleProduct?.description}</td>
+          </tr>
+          <tr>
+            <td className="panel-border">{singleProduct?.price}</td>
+          </tr>
+        </table>
+      </div>
+      <Footer />
     </div>
   );
 };
