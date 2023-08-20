@@ -32,7 +32,6 @@ const Home = () => {
           {products?.map((data, i) => (
             <div
               className="product-container"
-              onClick={() => navigate(`details/${data.id}`)}
               key={i}
               style={{ marginBottom: "50px", cursor: "pointer" }}
             >
@@ -44,6 +43,12 @@ const Home = () => {
               />
               <div>{data?.description}</div>
               <div>{data?.price}</div>
+              <div
+                onClick={() => navigate(`details/${data.id}`)}
+                style={{ color: "blue" }}
+              >
+                Buy
+              </div>
             </div>
           ))}
         </div>
