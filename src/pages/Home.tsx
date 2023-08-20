@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ShopContext, ShopLayer } from "../stores/context";
+import "../App.css";
 
 export interface ProductResponse {
   id: number;
@@ -21,7 +22,7 @@ const Home = () => {
   return loading ? (
     <div>Loading...</div>
   ) : (
-    <div>
+    <div className="container">
       {products?.map((data, i) => (
         <div
           onClick={() => navigate(`details/${data.id}`)}
