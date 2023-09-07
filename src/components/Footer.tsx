@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p>
-        <strong>Ticketless</strong>by{" "}
+        <strong>Ticketless </strong>by{" "}
         <a href="https://serverlesslab.com">Serverlesslab</a>. A sample
         application for learning Serverless on AWS.
       </p>

@@ -33,10 +33,10 @@ const Details = () => {
         )
         .then((res) => {
           setSingleProduct(res.data[0]);
-          console.log(res.data);
         })
         .catch((err) => {
-          const error = err.response.status === 404 ? "error" : "no error";
+          const error =
+            err.response && err.response.status === 404 ? "error" : "no error";
           setError(error);
         });
     };
@@ -47,11 +47,7 @@ const Details = () => {
     <div className="detail-container">
       <Title />
       <div className="product-card">
-        <img
-          src={singleProduct?.imageUrl}
-          alt={singleProduct?.name}
-          style={{ width: "250px" }}
-        />
+        <img src={singleProduct?.imageUrl} alt={singleProduct?.name} />
         <table>
           <tr>
             <th className="panel-border">{singleProduct?.name}</th>

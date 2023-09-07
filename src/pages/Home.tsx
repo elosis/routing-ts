@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShopContext, ShopLayer } from "../stores/context";
+import { ShopContext } from "../stores/context";
 import Footer from "../components/Footer";
 import Title from "../components/Title";
 import "../App.css";
@@ -19,7 +18,9 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  loadingProducts();
+  useEffect(() => {
+    loadingProducts();
+  }, []);
 
   return loading ? (
     <div>Loading...</div>
@@ -35,11 +36,7 @@ const Home = () => {
               style={{ marginBottom: "50px", cursor: "pointer" }}
             >
               <div>{data?.name}</div>
-              <img
-                src={data?.imageUrl}
-                alt={data?.name}
-                style={{ width: "250px" }}
-              />
+              <img src={data?.imageUrl} alt={data?.name} />
               <div>{data?.description}</div>
               <div>{data?.price}</div>
               <div

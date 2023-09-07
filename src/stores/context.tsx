@@ -34,7 +34,7 @@ function ShopLayer(props: React.PropsWithChildren<{}>) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
-  const loadingProducts = useEffect(() => {
+  const loadingProducts = () => {
     setLoading(true);
     const getData = async () => {
       await axios
@@ -47,19 +47,19 @@ function ShopLayer(props: React.PropsWithChildren<{}>) {
             },
           }
         )
-        .then((res) => setProducts(res.data))
+        .then((res) => {
+          setProducts(res.data);
+          console.log(res);
+        })
         .catch((err) => {
           const error =
-            err.response.status === 404
-              ? "oh no ! there is an error"
-              : "no error";
-
+            err.response && err.response.status === 404 ? "error" : "no error";
           setError(error);
         });
     };
     getData();
     setLoading(false);
-  }, []);
+  };
 
   const data: ContextValue = {
     products,
@@ -68,7 +68,7 @@ function ShopLayer(props: React.PropsWithChildren<{}>) {
     setLoading,
     error,
     setError,
-    loadingProducts: () => {},
+    loadingProducts,
   };
 
   return (
