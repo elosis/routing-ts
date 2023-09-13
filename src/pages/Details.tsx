@@ -46,19 +46,103 @@ const Details = () => {
   return (
     <div className="detail-container">
       <Title />
-      <div className="product-card">
-        <img src={singleProduct?.imageUrl} alt={singleProduct?.name} />
-        <table>
-          <tr>
-            <th className="panel-border">{singleProduct?.name}</th>
-          </tr>
-          <tr>
-            <td className="panel-border">{singleProduct?.description}</td>
-          </tr>
-          <tr>
-            <td className="panel-border">{singleProduct?.price}</td>
-          </tr>
-        </table>
+      <div className="product">
+        <div className="product-card">
+          <div>
+            <img src={singleProduct?.imageUrl} alt={singleProduct?.name} />
+            <p style={{ marginLeft: "16px" }}>%100 Polyester</p>
+          </div>
+          <div>
+            <div className="panel-border panel-header">
+              {singleProduct?.name}
+            </div>
+            <div className="panel-border">{singleProduct?.description}</div>
+            <div className="panel-border">{singleProduct?.price}</div>
+          </div>
+        </div>
+        <div className="ticket">
+          <p style={{ fontWeight: "500", fontSize: "20px" }}>Buy a ticket</p>
+          <div className="inner-ticket">
+            <div>
+              <p className="ticket-names">Name</p>
+              <input
+                type="text"
+                placeholder="Ömer Elaldı"
+                className="input-ticket"
+              ></input>
+            </div>
+            <div>
+              <p className="ticket-names">Email</p>
+              <input
+                type="text"
+                placeholder="e.g. elaldiomer34@gmail.com"
+                className="input-ticket"
+              ></input>
+            </div>
+            <div>
+              <p className="ticket-names">Credit Card Number</p>
+              <input
+                type="text"
+                placeholder="e.g. 1234 5678 9012 3456"
+                className="input-ticket"
+              ></input>
+            </div>
+            <div className="ticket-expiry">
+              <div className="select-date">
+                <label className="label">Expiry Month</label>
+                <div className="month">
+                  <select>
+                    <option>1 - Jan</option>
+                    <option>2 - Feb</option>
+                    <option>3 - Mar</option>
+                    <option>4 - Apr</option>
+                    <option>5 - May</option>
+                    <option>6 - Jun</option>
+                    <option>7 - Jul</option>
+                    <option>8 - Aug</option>
+                    <option>9 - Sep</option>
+                    <option>10 - Oct</option>
+                    <option>11 - Nov</option>
+                    <option>12 - Dec</option>
+                  </select>
+                </div>
+              </div>
+              <div className="select-year">
+                <label className="label">Expiry Year</label>
+                <div className="year">
+                  <select>
+                    <option>2018</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                  </select>
+                </div>
+              </div>
+              <div className="cvc-container">
+                <label className="label">CVC</label>
+                <div className="cvc">
+                  <input
+                    type="number"
+                    placeholder="e.g. 123"
+                    className="cvc-input"
+                  ></input>
+                </div>
+              </div>
+            </div>
+            <div className="ticket-footer">
+              <input type="checkbox" />
+              <p>
+                I understand this is a demo site and that{" "}
+                <strong> I don't have to use a real credit card</strong> I own!
+                No attempt to charge the card will be made anyway 😃
+              </p>
+            </div>
+            <button>Purchase</button>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
